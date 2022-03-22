@@ -1,6 +1,8 @@
 ../bin-int/Debug-macosx-ARM64/photoeditor/main.o: src/main.cpp \
   ../photoengine/include/entry_point.h \
   ../photoengine/include/photoengine/application.h \
+  ../photoengine/include/photoengine/events/window_event.h \
+  ../photoengine/include/photoengine/events/event.h \
   ../photoengine/include/photoengine/log.h \
   ../photoengine/deps/spdlog/include/spdlog/spdlog.h \
   ../photoengine/deps/spdlog/include/spdlog/common.h \
@@ -44,6 +46,10 @@
 ../photoengine/include/entry_point.h:
 
 ../photoengine/include/photoengine/application.h:
+
+../photoengine/include/photoengine/events/window_event.h:
+
+../photoengine/include/photoengine/events/event.h:
 
 ../photoengine/include/photoengine/log.h:
 
