@@ -28,7 +28,7 @@ ifeq ($(origin AR), default)
   AR = ar
 endif
 DEFINES +=
-INCLUDES += -Iinclude
+INCLUDES += -Iinclude -Ideps/spdlog/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
@@ -70,7 +70,9 @@ GENERATED :=
 OBJECTS :=
 
 GENERATED += $(OBJDIR)/application.o
+GENERATED += $(OBJDIR)/log.o
 OBJECTS += $(OBJDIR)/application.o
+OBJECTS += $(OBJDIR)/log.o
 
 # Rules
 # #############################################
@@ -135,6 +137,9 @@ endif
 # #############################################
 
 $(OBJDIR)/application.o: src/photoengine/application.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/log.o: src/photoengine/log.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 

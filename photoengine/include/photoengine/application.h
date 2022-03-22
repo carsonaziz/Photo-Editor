@@ -4,9 +4,6 @@ namespace PhotoEngine
 {
     class Application
     {
-    private:
-        static Application* s_instance;
-
     public:
         Application();
         virtual ~Application();

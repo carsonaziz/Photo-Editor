@@ -1,7 +1,5 @@
 #include "photoengine/application.h"
 
-#include <iostream>
-
 namespace PhotoEngine
 {
     Application::Application()
@@ -16,6 +14,6 @@ namespace PhotoEngine
 
     void Application::run()
     {
-        std::cout << "Running!\n";
+        
     }
 }

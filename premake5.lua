@@ -3,9 +3,13 @@ workspace "photoeditor"
     architecture "ARM64"
     configurations { "Debug", "Release" }
 
--- Binary and Object Directories
+-- Binary and Object Directories --
 tdir = "bin/%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}/%{prj.name}/"
 odir = "bin-int/%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}/%{prj.name}/"
+
+-- External Dependencies --
+dependencies = {}
+dependencies["spdlog"] = "photoengine/deps/spdlog"
 
 project "photoengine"
     location "photoengine"
@@ -20,12 +24,13 @@ project "photoengine"
     files
     {
         "%{prj.name}/include/**.h",
-        "%{prj.name}/src/**.cpp",
+        "%{prj.name}/src/**.cpp"
     }
 
     includedirs
     {
-        "%{prj.name}/include"
+        "%{prj.name}/include",
+        "%{dependencies.spdlog}/include"
     }
 
     filter { "system:macosx" }
@@ -61,7 +66,8 @@ project "photoeditor"
     includedirs
     {
         "photoengine/include",
-        "%{prj.name}/include"
+        "%{prj.name}/include",
+        "%{dependencies.spdlog}/include"
     }
 
     links "photoengine"

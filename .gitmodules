@@ -1,0 +1,3 @@
+[submodule "photoengine/deps/spdlog"]
+	path = photoengine/deps/spdlog
+	url = https://github.com/gabime/spdlog.git
