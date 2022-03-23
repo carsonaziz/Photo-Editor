@@ -47,8 +47,8 @@ TARGET = $(TARGETDIR)/photoeditor
 OBJDIR = ../bin-int/Debug-macosx-ARM64/photoeditor
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17
-LIBS += ../bin/Debug-macosx-ARM64/photoengine/libphotoengine.a ../photoengine/deps/glad/bin/Debug-macosx-ARM64/glad/libglad.a -framework Cocoa -framework OpenGL -framework IOKit -lglfw3
-LDDEPS += ../bin/Debug-macosx-ARM64/photoengine/libphotoengine.a ../photoengine/deps/glad/bin/Debug-macosx-ARM64/glad/libglad.a
+LIBS += ../bin/Debug-macosx-ARM64/photoengine/libphotoengine.a ../photoengine/deps/glad/bin/Debug-macosx-ARM64/glad/libglad.a ../photoengine/deps/imgui/bin/Debug-macosx-ARM64/imgui/libimgui.a -framework Cocoa -framework OpenGL -framework IOKit -lglfw3
+LDDEPS += ../bin/Debug-macosx-ARM64/photoengine/libphotoengine.a ../photoengine/deps/glad/bin/Debug-macosx-ARM64/glad/libglad.a ../photoengine/deps/imgui/bin/Debug-macosx-ARM64/imgui/libimgui.a
 
 else ifeq ($(config),release)
 TARGETDIR = ../bin/Release-macosx-ARM64/photoeditor
@@ -56,8 +56,8 @@ TARGET = $(TARGETDIR)/photoeditor
 OBJDIR = ../bin-int/Release-macosx-ARM64/photoeditor
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17
-LIBS += ../bin/Release-macosx-ARM64/photoengine/libphotoengine.a ../photoengine/deps/glad/bin/Release-macosx-ARM64/glad/libglad.a -framework Cocoa -framework OpenGL -framework IOKit -lglfw3
-LDDEPS += ../bin/Release-macosx-ARM64/photoengine/libphotoengine.a ../photoengine/deps/glad/bin/Release-macosx-ARM64/glad/libglad.a
+LIBS += ../bin/Release-macosx-ARM64/photoengine/libphotoengine.a ../photoengine/deps/glad/bin/Release-macosx-ARM64/glad/libglad.a ../photoengine/deps/imgui/bin/Release-macosx-ARM64/imgui/libimgui.a -framework Cocoa -framework OpenGL -framework IOKit -lglfw3
+LDDEPS += ../bin/Release-macosx-ARM64/photoengine/libphotoengine.a ../photoengine/deps/glad/bin/Release-macosx-ARM64/glad/libglad.a ../photoengine/deps/imgui/bin/Release-macosx-ARM64/imgui/libimgui.a
 
 endif
 

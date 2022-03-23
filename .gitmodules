@@ -1,3 +1,6 @@
 [submodule "photoengine/deps/spdlog"]
 	path = photoengine/deps/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "photoengine/deps/imgui"]
+	path = photoengine/deps/imgui
+	url = https://github.com/ocornut/imgui.git

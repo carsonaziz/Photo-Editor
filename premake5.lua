@@ -12,8 +12,10 @@ dependencies = {}
 dependencies["spdlog"] = "photoengine/deps/spdlog"
 dependencies["glfw"] = "photoengine/deps/glfw"
 dependencies["glad"] = "photoengine/deps/glad"
+dependencies["imgui"] = "photoengine/deps/imgui"
 
 include "photoengine/deps/glad"
+include "photoengine/deps/imgui"
 
 project "photoengine"
     location "photoengine"
@@ -28,7 +30,9 @@ project "photoengine"
     files
     {
         "%{prj.name}/include/**.h",
-        "%{prj.name}/src/**.cpp"
+        "%{prj.name}/src/**.cpp",
+        "%{dependencies.imgui}/backends/imgui_impl_opengl3.cpp",
+        "%{dependencies.imgui}/backends/imgui_impl_glfw.cpp",
     }
 
     includedirs
@@ -36,8 +40,11 @@ project "photoengine"
         "%{prj.name}/include",
         "%{dependencies.spdlog}/include",
         "%{dependencies.glfw}/include",
-        "%{dependencies.glad}/include"
+        "%{dependencies.glad}/include",
+        "%{dependencies.imgui}"
     }
+
+    defines "GLFW_INCLUDE_NONE"
 
     filter { "system:macosx" }
 
@@ -79,7 +86,8 @@ project "photoeditor"
     {
         "photoengine",
         "glfw3",
-        "glad"
+        "glad",
+        "imgui"
     }
 
     filter { "system:macosx" }

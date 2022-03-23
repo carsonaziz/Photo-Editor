@@ -10,11 +10,13 @@ endif
 
 ifeq ($(config),debug)
   glad_config = debug
+  imgui_config = debug
   photoengine_config = debug
   photoeditor_config = debug
 
 else ifeq ($(config),release)
   glad_config = release
+  imgui_config = release
   photoengine_config = release
   photoeditor_config = release
 
@@ -22,7 +24,7 @@ else
   $(error "invalid configuration $(config)")
 endif
 
-PROJECTS := glad photoengine photoeditor
+PROJECTS := glad imgui photoengine photoeditor
 
 .PHONY: all clean help $(PROJECTS) 
 
@@ -34,13 +36,19 @@ ifneq (,$(glad_config))
 	@${MAKE} --no-print-directory -C photoengine/deps/glad -f Makefile config=$(glad_config)
 endif
 
+imgui:
+ifneq (,$(imgui_config))
+	@echo "==== Building imgui ($(imgui_config)) ===="
+	@${MAKE} --no-print-directory -C photoengine/deps/imgui -f Makefile config=$(imgui_config)
+endif
+
 photoengine:
 ifneq (,$(photoengine_config))
 	@echo "==== Building photoengine ($(photoengine_config)) ===="
 	@${MAKE} --no-print-directory -C photoengine -f Makefile config=$(photoengine_config)
 endif
 
-photoeditor: photoengine glad
+photoeditor: photoengine glad imgui
 ifneq (,$(photoeditor_config))
 	@echo "==== Building photoeditor ($(photoeditor_config)) ===="
 	@${MAKE} --no-print-directory -C photoeditor -f Makefile config=$(photoeditor_config)
@@ -48,6 +56,7 @@ endif
 
 clean:
 	@${MAKE} --no-print-directory -C photoengine/deps/glad -f Makefile clean
+	@${MAKE} --no-print-directory -C photoengine/deps/imgui -f Makefile clean
 	@${MAKE} --no-print-directory -C photoengine -f Makefile clean
 	@${MAKE} --no-print-directory -C photoeditor -f Makefile clean
 
@@ -62,6 +71,7 @@ help:
 	@echo "   all (default)"
 	@echo "   clean"
 	@echo "   glad"
+	@echo "   imgui"
 	@echo "   photoengine"
 	@echo "   photoeditor"
 	@echo ""

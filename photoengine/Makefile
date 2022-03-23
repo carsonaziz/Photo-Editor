@@ -27,8 +27,8 @@ endif
 ifeq ($(origin AR), default)
   AR = ar
 endif
-DEFINES +=
-INCLUDES += -Iinclude -Ideps/spdlog/include -Ideps/glfw/include -Ideps/glad/include
+DEFINES += -DGLFW_INCLUDE_NONE
+INCLUDES += -Iinclude -Ideps/spdlog/include -Ideps/glfw/include -Ideps/glad/include -Ideps/imgui
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
@@ -70,11 +70,15 @@ GENERATED :=
 OBJECTS :=
 
 GENERATED += $(OBJDIR)/application.o
+GENERATED += $(OBJDIR)/imgui_impl_glfw.o
+GENERATED += $(OBJDIR)/imgui_impl_opengl3.o
 GENERATED += $(OBJDIR)/imgui_layer.o
 GENERATED += $(OBJDIR)/layer_list.o
 GENERATED += $(OBJDIR)/log.o
 GENERATED += $(OBJDIR)/window.o
 OBJECTS += $(OBJDIR)/application.o
+OBJECTS += $(OBJDIR)/imgui_impl_glfw.o
+OBJECTS += $(OBJDIR)/imgui_impl_opengl3.o
 OBJECTS += $(OBJDIR)/imgui_layer.o
 OBJECTS += $(OBJDIR)/layer_list.o
 OBJECTS += $(OBJDIR)/log.o
@@ -142,6 +146,12 @@ endif
 # File Rules
 # #############################################
 
+$(OBJDIR)/imgui_impl_glfw.o: deps/imgui/backends/imgui_impl_glfw.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/imgui_impl_opengl3.o: deps/imgui/backends/imgui_impl_opengl3.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/application.o: src/photoengine/application.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"

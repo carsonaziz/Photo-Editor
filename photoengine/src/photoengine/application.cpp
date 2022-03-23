@@ -4,11 +4,18 @@
 #include "photoengine/events/keyboard_event.h"
 #include "photoengine/layers/imgui_layer.h"
 
+// TEMP
+#include <glfw/glfw3.h>
+#include <glad/glad.h>
+
 namespace PhotoEngine
 {
+    Application* Application::s_instance = nullptr;
+
     Application::Application() : m_running(true)
     {
-        m_window = std::make_unique<Window>();
+        s_instance = this;
+        m_window = std::make_shared<Window>();
         m_window->set_event_callback(std::bind(&Application::on_event, this, std::placeholders::_1));
 
         m_layer_list = std::make_unique<LayerList>();
@@ -19,7 +26,10 @@ namespace PhotoEngine
 
     Application::~Application()
     {
-
+        for (Layer* layer : *m_layer_list)
+        {
+            layer->on_detach();
+        }
     }
 
     void Application::on_event(Event& event)
@@ -46,6 +56,14 @@ namespace PhotoEngine
     {
         while (m_running)
         {
+            glClearColor(0.2f, 0.3f, 0.8f, 1.0);
+            glClear(GL_COLOR_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+
+            for (Layer* layer : *m_layer_list)
+            {
+                layer->render();
+            }
+
             m_window->update();
         }
     }

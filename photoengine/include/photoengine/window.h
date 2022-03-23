@@ -42,6 +42,8 @@ namespace PhotoEngine
         void update();
         void shutdown();
 
+        inline GLFWwindow* get_window_handle() { return m_window; }
+
         void set_vsync(bool vsync);
     };
 }
