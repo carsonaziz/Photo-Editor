@@ -9,10 +9,12 @@ ifndef verbose
 endif
 
 ifeq ($(config),debug)
+  glad_config = debug
   photoengine_config = debug
   photoeditor_config = debug
 
 else ifeq ($(config),release)
+  glad_config = release
   photoengine_config = release
   photoeditor_config = release
 
@@ -20,11 +22,17 @@ else
   $(error "invalid configuration $(config)")
 endif
 
-PROJECTS := photoengine photoeditor
+PROJECTS := glad photoengine photoeditor
 
 .PHONY: all clean help $(PROJECTS) 
 
 all: $(PROJECTS)
+
+glad:
+ifneq (,$(glad_config))
+	@echo "==== Building glad ($(glad_config)) ===="
+	@${MAKE} --no-print-directory -C photoengine/deps/glad -f Makefile config=$(glad_config)
+endif
 
 photoengine:
 ifneq (,$(photoengine_config))
@@ -32,13 +40,14 @@ ifneq (,$(photoengine_config))
 	@${MAKE} --no-print-directory -C photoengine -f Makefile config=$(photoengine_config)
 endif
 
-photoeditor: photoengine
+photoeditor: photoengine glad
 ifneq (,$(photoeditor_config))
 	@echo "==== Building photoeditor ($(photoeditor_config)) ===="
 	@${MAKE} --no-print-directory -C photoeditor -f Makefile config=$(photoeditor_config)
 endif
 
 clean:
+	@${MAKE} --no-print-directory -C photoengine/deps/glad -f Makefile clean
 	@${MAKE} --no-print-directory -C photoengine -f Makefile clean
 	@${MAKE} --no-print-directory -C photoeditor -f Makefile clean
 
@@ -52,6 +61,7 @@ help:
 	@echo "TARGETS:"
 	@echo "   all (default)"
 	@echo "   clean"
+	@echo "   glad"
 	@echo "   photoengine"
 	@echo "   photoeditor"
 	@echo ""

@@ -10,6 +10,10 @@ odir = "bin-int/%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}/%{prj.name}/"
 -- External Dependencies --
 dependencies = {}
 dependencies["spdlog"] = "photoengine/deps/spdlog"
+dependencies["glfw"] = "photoengine/deps/glfw"
+dependencies["glad"] = "photoengine/deps/glad"
+
+include "photoengine/deps/glad"
 
 project "photoengine"
     location "photoengine"
@@ -30,11 +34,12 @@ project "photoengine"
     includedirs
     {
         "%{prj.name}/include",
-        "%{dependencies.spdlog}/include"
+        "%{dependencies.spdlog}/include",
+        "%{dependencies.glfw}/include",
+        "%{dependencies.glad}/include"
     }
 
     filter { "system:macosx" }
-        links { "glfw3", "Cocoa.framework", "OpenGL.framework", "IOKit.framework" }
 
     filter { "system:windows" }
         systemversion "latest"
@@ -70,9 +75,16 @@ project "photoeditor"
         "%{dependencies.spdlog}/include"
     }
 
-    links "photoengine"
+    links 
+    {
+        "photoengine",
+        "glfw3",
+        "glad"
+    }
 
     filter { "system:macosx" }
+        links { "Cocoa.framework", "OpenGL.framework", "IOKit.framework" }
+        libdirs "%{dependencies.glfw}/lib-arm64"    -- Add support for x64
 
     filter { "system:windows" }
         systemversion "latest"

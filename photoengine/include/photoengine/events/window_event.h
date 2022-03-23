@@ -24,8 +24,10 @@ namespace PhotoEngine
 
     class WindowResizeEvent : public Event
     {
+    private:
+        int m_width, m_height;
     public:
-        WindowResizeEvent() {}
+        WindowResizeEvent(int width, int height) : m_width(width), m_height(height) {}
 
         static EventType get_static_type() {return EventType::WindowResize; }
         virtual EventType get_type() const override { return get_static_type(); }
@@ -33,7 +35,7 @@ namespace PhotoEngine
         virtual std::string to_string() const override 
         {
             std::stringstream ss;
-            ss << "WindowResize";
+            ss << "WindowResize: w: " << m_width << " h: " << m_height;
             return ss.str();
         }
     };

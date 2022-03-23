@@ -9,7 +9,7 @@ namespace PhotoEngine
     class MouseButtonEvent : public Event
     {
     protected:
-        unsigned int m_button;
+        int m_button;
 
     public:
         MouseButtonEvent(unsigned int button) : m_button(button) {}
@@ -18,7 +18,7 @@ namespace PhotoEngine
     class MouseButtonPressedEvent : public MouseButtonEvent
     {
     public:
-        MouseButtonPressedEvent(unsigned int button) : MouseButtonEvent(button) {}
+        MouseButtonPressedEvent(int button) : MouseButtonEvent(button) {}
 
         static EventType get_static_type() {return EventType::MouseButtonPressed; }
         virtual EventType get_type() const override { return get_static_type(); }
@@ -34,7 +34,7 @@ namespace PhotoEngine
     class MouseButtonReleasedEvent : public MouseButtonEvent
     {
     public:
-        MouseButtonReleasedEvent(unsigned int button) : MouseButtonEvent(button) {}
+        MouseButtonReleasedEvent(int button) : MouseButtonEvent(button) {}
 
         static EventType get_static_type() {return EventType::MouseButtonReleased; }
         virtual EventType get_type() const override { return get_static_type(); }
@@ -50,10 +50,10 @@ namespace PhotoEngine
     class MouseMovedEvent : public Event
     {
     private:
-        int m_x, m_y;
+        double m_x, m_y;
 
     public:
-        MouseMovedEvent(int x, int y) {}
+        MouseMovedEvent(double x, double y) : m_x(x), m_y(y) {}
 
         static EventType get_static_type() {return EventType::MouseMoved; }
         virtual EventType get_type() const override { return get_static_type(); }
@@ -65,20 +65,20 @@ namespace PhotoEngine
         }
     };  
 
-    class MouseMovedEvent : public Event
+    class MouseScrolledEvent : public Event
     {
     private:
-        int m_offsetx, m_offsety;
+        double m_xoffset, m_yoffset;
 
     public:
-        MouseMovedEvent(int offsetx, int offsety) {}
+        MouseScrolledEvent(double xoffset, double yoffset) : m_xoffset(xoffset), m_yoffset(yoffset) {}
 
         static EventType get_static_type() {return EventType::MouseScrolled; }
         virtual EventType get_type() const override { return get_static_type(); }
         virtual std::string to_string() const override 
         {
             std::stringstream ss;
-            ss << "MouseScrolled: offsetx: " << m_offsetx << " offsety: " << m_offsety;
+            ss << "MouseScrolled: offsetx: " << m_xoffset << " offsety: " << m_yoffset;
             return ss.str();
         }
     };  

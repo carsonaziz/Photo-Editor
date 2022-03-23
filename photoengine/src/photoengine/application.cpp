@@ -6,9 +6,10 @@
 
 namespace PhotoEngine
 {
-    Application::Application()
+    Application::Application() : m_running(true)
     {
-
+        m_window = std::make_unique<Window>();
+        m_window->set_event_callback(std::bind(&Application::on_event, this, std::placeholders::_1));
     }
 
     Application::~Application()
@@ -32,7 +33,9 @@ namespace PhotoEngine
 
     void Application::run()
     {
-        WindowCloseEvent event;
-        on_event(event);
+        while (m_running)
+        {
+            m_window->update();
+        }
     }
 }

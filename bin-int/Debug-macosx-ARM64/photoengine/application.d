@@ -1,8 +1,8 @@
 ../bin-int/Debug-macosx-ARM64/photoengine/application.o: \
   src/photoengine/application.cpp include/photoengine/application.h \
   include/photoengine/events/window_event.h \
-  include/photoengine/events/event.h include/photoengine/log.h \
-  deps/spdlog/include/spdlog/spdlog.h \
+  include/photoengine/events/event.h include/photoengine/window.h \
+  include/photoengine/log.h deps/spdlog/include/spdlog/spdlog.h \
   deps/spdlog/include/spdlog/common.h \
   deps/spdlog/include/spdlog/tweakme.h \
   deps/spdlog/include/spdlog/details/null_mutex.h \
@@ -47,6 +47,8 @@ include/photoengine/application.h:
 include/photoengine/events/window_event.h:
 
 include/photoengine/events/event.h:
+
+include/photoengine/window.h:
 
 include/photoengine/log.h:
 
