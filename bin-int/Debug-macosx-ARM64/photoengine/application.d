@@ -2,7 +2,9 @@
   src/photoengine/application.cpp include/photoengine/application.h \
   include/photoengine/events/window_event.h \
   include/photoengine/events/event.h include/photoengine/window.h \
-  include/photoengine/log.h deps/spdlog/include/spdlog/spdlog.h \
+  include/photoengine/layers/layer_list.h \
+  include/photoengine/layers/layer.h include/photoengine/log.h \
+  deps/spdlog/include/spdlog/spdlog.h \
   deps/spdlog/include/spdlog/common.h \
   deps/spdlog/include/spdlog/tweakme.h \
   deps/spdlog/include/spdlog/details/null_mutex.h \
@@ -40,7 +42,8 @@
   deps/spdlog/include/spdlog/spdlog-inl.h \
   deps/spdlog/include/spdlog/sinks/stdout_color_sinks.h \
   deps/spdlog/include/spdlog/sinks/stdout_color_sinks-inl.h \
-  include/photoengine/events/keyboard_event.h
+  include/photoengine/events/keyboard_event.h \
+  include/photoengine/layers/imgui_layer.h
 
 include/photoengine/application.h:
 
@@ -49,6 +52,10 @@ include/photoengine/events/window_event.h:
 include/photoengine/events/event.h:
 
 include/photoengine/window.h:
+
+include/photoengine/layers/layer_list.h:
+
+include/photoengine/layers/layer.h:
 
 include/photoengine/log.h:
 
@@ -129,3 +136,5 @@ deps/spdlog/include/spdlog/sinks/stdout_color_sinks.h:
 deps/spdlog/include/spdlog/sinks/stdout_color_sinks-inl.h:
 
 include/photoengine/events/keyboard_event.h:
+
+include/photoengine/layers/imgui_layer.h:

@@ -4,6 +4,8 @@
   ../photoengine/include/photoengine/events/window_event.h \
   ../photoengine/include/photoengine/events/event.h \
   ../photoengine/include/photoengine/window.h \
+  ../photoengine/include/photoengine/layers/layer_list.h \
+  ../photoengine/include/photoengine/layers/layer.h \
   ../photoengine/include/photoengine/log.h \
   ../photoengine/deps/spdlog/include/spdlog/spdlog.h \
   ../photoengine/deps/spdlog/include/spdlog/common.h \
@@ -53,6 +55,10 @@
 ../photoengine/include/photoengine/events/event.h:
 
 ../photoengine/include/photoengine/window.h:
+
+../photoengine/include/photoengine/layers/layer_list.h:
+
+../photoengine/include/photoengine/layers/layer.h:
 
 ../photoengine/include/photoengine/log.h:
 

@@ -15,7 +15,7 @@ namespace PhotoEngine
     class Event
     {
     public:
-        bool m_handled;
+        bool m_handled = false;
 
     public:
         virtual EventType get_type() const = 0;

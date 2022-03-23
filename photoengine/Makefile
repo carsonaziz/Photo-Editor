@@ -70,9 +70,13 @@ GENERATED :=
 OBJECTS :=
 
 GENERATED += $(OBJDIR)/application.o
+GENERATED += $(OBJDIR)/imgui_layer.o
+GENERATED += $(OBJDIR)/layer_list.o
 GENERATED += $(OBJDIR)/log.o
 GENERATED += $(OBJDIR)/window.o
 OBJECTS += $(OBJDIR)/application.o
+OBJECTS += $(OBJDIR)/imgui_layer.o
+OBJECTS += $(OBJDIR)/layer_list.o
 OBJECTS += $(OBJDIR)/log.o
 OBJECTS += $(OBJDIR)/window.o
 
@@ -139,6 +143,12 @@ endif
 # #############################################
 
 $(OBJDIR)/application.o: src/photoengine/application.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/imgui_layer.o: src/photoengine/layers/imgui_layer.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/layer_list.o: src/photoengine/layers/layer_list.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/log.o: src/photoengine/log.cpp
