@@ -47,6 +47,7 @@ namespace PhotoEngine
             PE_ENGINE_ERROR("Could not create GLFWwindow!");
             return;
         }
+        PE_ENGINE_INFO("Created window {}: w: {} h: {}", m_data.Title, m_data.Width, m_data.Height);
 
         glfwMakeContextCurrent(m_window);
         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))

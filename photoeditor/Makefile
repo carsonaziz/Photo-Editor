@@ -43,7 +43,7 @@ endef
 
 ifeq ($(config),debug)
 TARGETDIR = ../bin/Debug-macosx-ARM64/photoeditor
-TARGET = $(TARGETDIR)/photoeditor
+TARGET = $(TARGETDIR)/PhotoEditor
 OBJDIR = ../bin-int/Debug-macosx-ARM64/photoeditor
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17
@@ -52,7 +52,7 @@ LDDEPS += ../bin/Debug-macosx-ARM64/photoengine/libphotoengine.a ../photoengine/
 
 else ifeq ($(config),release)
 TARGETDIR = ../bin/Release-macosx-ARM64/photoeditor
-TARGET = $(TARGETDIR)/photoeditor
+TARGET = $(TARGETDIR)/PhotoEditor
 OBJDIR = ../bin-int/Release-macosx-ARM64/photoeditor
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17

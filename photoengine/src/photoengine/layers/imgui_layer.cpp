@@ -31,6 +31,14 @@ namespace PhotoEngine
         // Setup Platform/Renderer backends
         ImGui_ImplGlfw_InitForOpenGL(Application::get()->get_window()->get_window_handle(), true);
         ImGui_ImplOpenGL3_Init("#version 410");
+
+        // Create GUI items
+        m_gui_adjustment = std::make_unique<GUIAdjustment>();
+        m_gui_layer = std::make_unique<GUILayer>();
+        m_gui_color = std::make_unique<GUIColor>();
+        m_gui_tool = std::make_unique<GUITool>();
+        m_gui_footer = std::make_unique<GUIFooter>();
+        m_gui_viewport = std::make_unique<GUIViewport>();
     }
 
     void ImGUILayer::on_detach()
@@ -58,17 +66,15 @@ namespace PhotoEngine
         ImGui::NewFrame();
 
         bool show_demo_window = true;
-        bool show_layer_panel = true;
-        bool show_adjustment_panel = true;
-        bool show_color_panel = true;
         bool show_tool_panel = true;
 
         dockspace();
-        viewport();
-        layer_panel(&show_layer_panel);
-        adjustment_panel(&show_adjustment_panel);
-        color_panel(&show_color_panel);
-        tool_panel(&show_tool_panel);
+        m_gui_adjustment->render();
+        m_gui_layer->render();
+        m_gui_color->render();
+        m_gui_tool->render();
+        m_gui_footer->render();
+        m_gui_viewport->render();
 
         // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
         // if (show_demo_window)
@@ -179,56 +185,6 @@ namespace PhotoEngine
         ImGui::End();
     }
 
-    void ImGUILayer::layer_panel(bool* p_open)
-    {
-        ImGuiWindowFlags window_flags = 0;
-        ImGui::Begin("Layers", p_open, window_flags);
-
-        ImGui::End();
-    }
-
-    void ImGUILayer::adjustment_panel(bool* p_open)
-    {
-        ImGuiWindowFlags window_flags = 0;
-        ImGui::Begin("Adjustments", p_open, window_flags);
-
-        ImGui::End();
-    }
-
-    void ImGUILayer::color_panel(bool* p_open)
-    {
-        ImGuiWindowFlags window_flags = 0;
-        ImGui::Begin("Color", p_open, window_flags);
-
-        ImGui::End();
-    }
-
-    void ImGUILayer::viewport()
-    {
-        bool p_open = true;
-        ImGuiWindowFlags window_flags = 0;
-        ImGui::Begin("Viewport", &p_open, window_flags);
-
-        ImVec2 image_zoom_size = ImVec2(700, 700);
-        ImGui::SetCursorPos(ImVec2((ImGui::GetWindowSize().x - image_zoom_size.x)*0.5f, (ImGui::GetWindowSize().y - image_zoom_size.y)*0.5f));
-        ImGui::Image(0, image_zoom_size, ImVec2(0, 1), ImVec2(1, 0));
-
-        ImGui::End();
-    }
-
-    void ImGUILayer::tool_panel(bool* p_open)
-    {
-        ImGuiWindowClass window_class;
-        window_class.DockNodeFlagsOverrideSet = ImGuiDockNodeFlags_AutoHideTabBar;
-        window_class.DockNodeFlagsOverrideSet = ImGuiDockNodeFlags_NoResize;
-        ImGui::SetNextWindowClass(&window_class);
-        ImGuiWindowFlags window_flags = 0;
-        
-        ImGui::Begin("Tools", p_open, window_flags);
-
-        ImGui::End();
-    }
-
     void ImGUILayer::style_colors_dark()
     {
         ImGuiStyle* style = &ImGui::GetStyle();
@@ -244,8 +200,8 @@ namespace PhotoEngine
         colors[ImGuiCol_PopupBg]                = ImVec4(0.08f, 0.08f, 0.08f, 0.94f);
         colors[ImGuiCol_Border]                 = ImVec4(0.43f, 0.43f, 0.50f, 0.50f);
         colors[ImGuiCol_BorderShadow]           = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
-        colors[ImGuiCol_FrameBg]                = ImVec4(0.16f, 0.29f, 0.48f, 0.54f);
-        colors[ImGuiCol_FrameBgHovered]         = ImVec4(0.26f, 0.59f, 0.98f, 0.40f);
+        colors[ImGuiCol_FrameBg]                = ImVec4(0.15f, 0.15f, 0.15f, 0.54f);
+        colors[ImGuiCol_FrameBgHovered]         = colors[ImGuiCol_FrameBg];
         colors[ImGuiCol_FrameBgActive]          = ImVec4(0.26f, 0.59f, 0.98f, 0.67f);
         colors[ImGuiCol_TitleBg]                = ImVec4(0.15f, 0.15f, 0.15f, 1.00f);
         colors[ImGuiCol_TitleBgActive]          = colors[ImGuiCol_TitleBg];

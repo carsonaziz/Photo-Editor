@@ -44,8 +44,8 @@
   deps/spdlog/include/spdlog/sinks/stdout_color_sinks-inl.h \
   include/photoengine/events/keyboard_event.h \
   include/photoengine/layers/imgui_layer.h \
-  deps/glfw/include/glfw/glfw3.h deps/glad/include/glad/glad.h \
-  deps/glad/include/KHR/khrplatform.h
+  include/photoengine/gui/gui_item.h deps/glfw/include/glfw/glfw3.h \
+  deps/glad/include/glad/glad.h deps/glad/include/KHR/khrplatform.h
 
 include/photoengine/application.h:
 
@@ -140,6 +140,8 @@ deps/spdlog/include/spdlog/sinks/stdout_color_sinks-inl.h:
 include/photoengine/events/keyboard_event.h:
 
 include/photoengine/layers/imgui_layer.h:
+
+include/photoengine/gui/gui_item.h:
 
 deps/glfw/include/glfw/glfw3.h:
 

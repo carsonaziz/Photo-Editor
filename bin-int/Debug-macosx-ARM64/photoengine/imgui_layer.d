@@ -2,7 +2,8 @@
   src/photoengine/layers/imgui_layer.cpp \
   include/photoengine/layers/imgui_layer.h \
   include/photoengine/layers/layer.h include/photoengine/events/event.h \
-  include/photoengine/log.h deps/spdlog/include/spdlog/spdlog.h \
+  include/photoengine/gui/gui_item.h include/photoengine/log.h \
+  deps/spdlog/include/spdlog/spdlog.h \
   deps/spdlog/include/spdlog/common.h \
   deps/spdlog/include/spdlog/tweakme.h \
   deps/spdlog/include/spdlog/details/null_mutex.h \
@@ -54,6 +55,8 @@ include/photoengine/layers/imgui_layer.h:
 include/photoengine/layers/layer.h:
 
 include/photoengine/events/event.h:
+
+include/photoengine/gui/gui_item.h:
 
 include/photoengine/log.h:
 

@@ -61,6 +61,7 @@ project "photoengine"
 
 project "photoeditor"
     location "photoeditor"
+    targetname "PhotoEditor"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++17"

@@ -70,6 +70,7 @@ GENERATED :=
 OBJECTS :=
 
 GENERATED += $(OBJDIR)/application.o
+GENERATED += $(OBJDIR)/gui_item.o
 GENERATED += $(OBJDIR)/imgui_impl_glfw.o
 GENERATED += $(OBJDIR)/imgui_impl_opengl3.o
 GENERATED += $(OBJDIR)/imgui_layer.o
@@ -77,6 +78,7 @@ GENERATED += $(OBJDIR)/layer_list.o
 GENERATED += $(OBJDIR)/log.o
 GENERATED += $(OBJDIR)/window.o
 OBJECTS += $(OBJDIR)/application.o
+OBJECTS += $(OBJDIR)/gui_item.o
 OBJECTS += $(OBJDIR)/imgui_impl_glfw.o
 OBJECTS += $(OBJDIR)/imgui_impl_opengl3.o
 OBJECTS += $(OBJDIR)/imgui_layer.o
@@ -153,6 +155,9 @@ $(OBJDIR)/imgui_impl_opengl3.o: deps/imgui/backends/imgui_impl_opengl3.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/application.o: src/photoengine/application.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/gui_item.o: src/photoengine/gui/gui_item.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/imgui_layer.o: src/photoengine/layers/imgui_layer.cpp
