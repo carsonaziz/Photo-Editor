@@ -28,7 +28,7 @@ ifeq ($(origin AR), default)
   AR = ar
 endif
 DEFINES +=
-INCLUDES += -I../photoengine/include -Iinclude -I../photoengine/deps/spdlog/include
+INCLUDES += -I../photoengine/include -Iinclude -I../photoengine/deps/spdlog/include -I../photoengine/deps/glad/include -I../photoengine/deps/imgui -I../photoengine/deps/stb
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
@@ -71,7 +71,9 @@ endif
 GENERATED :=
 OBJECTS :=
 
+GENERATED += $(OBJDIR)/gui_editor.o
 GENERATED += $(OBJDIR)/main.o
+OBJECTS += $(OBJDIR)/gui_editor.o
 OBJECTS += $(OBJDIR)/main.o
 
 # Rules
@@ -136,6 +138,9 @@ endif
 # File Rules
 # #############################################
 
+$(OBJDIR)/gui_editor.o: src/gui/gui_editor.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/main.o: src/main.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"

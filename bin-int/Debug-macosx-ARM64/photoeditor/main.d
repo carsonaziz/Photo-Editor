@@ -6,6 +6,9 @@
   ../photoengine/include/photoengine/window.h \
   ../photoengine/include/photoengine/layers/layer_list.h \
   ../photoengine/include/photoengine/layers/layer.h \
+  ../photoengine/include/photoengine/events/mouse_event.h \
+  ../photoengine/include/photoengine/image.h \
+  ../photoengine/include/photoengine/gui_interface.h \
   ../photoengine/include/photoengine/log.h \
   ../photoengine/deps/spdlog/include/spdlog/spdlog.h \
   ../photoengine/deps/spdlog/include/spdlog/common.h \
@@ -44,7 +47,8 @@
   ../photoengine/deps/spdlog/include/spdlog/details/synchronous_factory.h \
   ../photoengine/deps/spdlog/include/spdlog/spdlog-inl.h \
   ../photoengine/deps/spdlog/include/spdlog/sinks/stdout_color_sinks.h \
-  ../photoengine/deps/spdlog/include/spdlog/sinks/stdout_color_sinks-inl.h
+  ../photoengine/deps/spdlog/include/spdlog/sinks/stdout_color_sinks-inl.h \
+  include/gui/gui_editor.h
 
 ../photoengine/include/entry_point.h:
 
@@ -59,6 +63,12 @@
 ../photoengine/include/photoengine/layers/layer_list.h:
 
 ../photoengine/include/photoengine/layers/layer.h:
+
+../photoengine/include/photoengine/events/mouse_event.h:
+
+../photoengine/include/photoengine/image.h:
+
+../photoengine/include/photoengine/gui_interface.h:
 
 ../photoengine/include/photoengine/log.h:
 
@@ -137,3 +147,5 @@
 ../photoengine/deps/spdlog/include/spdlog/sinks/stdout_color_sinks.h:
 
 ../photoengine/deps/spdlog/include/spdlog/sinks/stdout_color_sinks-inl.h:
+
+include/gui/gui_editor.h:

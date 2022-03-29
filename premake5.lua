@@ -13,6 +13,7 @@ dependencies["spdlog"] = "photoengine/deps/spdlog"
 dependencies["glfw"] = "photoengine/deps/glfw"
 dependencies["glad"] = "photoengine/deps/glad"
 dependencies["imgui"] = "photoengine/deps/imgui"
+dependencies["stb"] = "photoengine/deps/stb"
 
 include "photoengine/deps/glad"
 include "photoengine/deps/imgui"
@@ -41,7 +42,8 @@ project "photoengine"
         "%{dependencies.spdlog}/include",
         "%{dependencies.glfw}/include",
         "%{dependencies.glad}/include",
-        "%{dependencies.imgui}"
+        "%{dependencies.imgui}",
+        "%{dependencies.stb}"
     }
 
     defines "GLFW_INCLUDE_NONE"
@@ -80,7 +82,10 @@ project "photoeditor"
     {
         "photoengine/include",
         "%{prj.name}/include",
-        "%{dependencies.spdlog}/include"
+        "%{dependencies.spdlog}/include",
+        "%{dependencies.glad}/include", -- TEMP
+        "%{dependencies.imgui}",
+        "%{dependencies.stb}"
     }
 
     links 

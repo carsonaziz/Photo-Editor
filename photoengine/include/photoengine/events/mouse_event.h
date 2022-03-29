@@ -63,6 +63,9 @@ namespace PhotoEngine
             ss << "MouseMoved: x: " << m_x << " y: " << m_y;
             return ss.str();
         }
+
+        inline double get_x() const { return m_x; }
+        inline double get_y() const { return m_y; }
     };  
 
     class MouseScrolledEvent : public Event

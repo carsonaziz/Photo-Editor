@@ -3,7 +3,9 @@
   include/photoengine/events/window_event.h \
   include/photoengine/events/event.h include/photoengine/window.h \
   include/photoengine/layers/layer_list.h \
-  include/photoengine/layers/layer.h include/photoengine/log.h \
+  include/photoengine/layers/layer.h \
+  include/photoengine/events/mouse_event.h include/photoengine/image.h \
+  include/photoengine/gui_interface.h include/photoengine/log.h \
   deps/spdlog/include/spdlog/spdlog.h \
   deps/spdlog/include/spdlog/common.h \
   deps/spdlog/include/spdlog/tweakme.h \
@@ -43,9 +45,8 @@
   deps/spdlog/include/spdlog/sinks/stdout_color_sinks.h \
   deps/spdlog/include/spdlog/sinks/stdout_color_sinks-inl.h \
   include/photoengine/events/keyboard_event.h \
-  include/photoengine/layers/imgui_layer.h \
-  include/photoengine/gui/gui_item.h deps/glfw/include/glfw/glfw3.h \
-  deps/glad/include/glad/glad.h deps/glad/include/KHR/khrplatform.h
+  deps/glfw/include/glfw/glfw3.h deps/glad/include/glad/glad.h \
+  deps/glad/include/KHR/khrplatform.h
 
 include/photoengine/application.h:
 
@@ -58,6 +59,12 @@ include/photoengine/window.h:
 include/photoengine/layers/layer_list.h:
 
 include/photoengine/layers/layer.h:
+
+include/photoengine/events/mouse_event.h:
+
+include/photoengine/image.h:
+
+include/photoengine/gui_interface.h:
 
 include/photoengine/log.h:
 
@@ -138,10 +145,6 @@ deps/spdlog/include/spdlog/sinks/stdout_color_sinks.h:
 deps/spdlog/include/spdlog/sinks/stdout_color_sinks-inl.h:
 
 include/photoengine/events/keyboard_event.h:
-
-include/photoengine/layers/imgui_layer.h:
-
-include/photoengine/gui/gui_item.h:
 
 deps/glfw/include/glfw/glfw3.h:
 

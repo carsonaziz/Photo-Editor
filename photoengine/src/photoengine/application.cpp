@@ -2,7 +2,7 @@
 
 #include "photoengine/log.h"
 #include "photoengine/events/keyboard_event.h"
-#include "photoengine/layers/imgui_layer.h"
+#include "photoengine/gui_interface.h"
 
 // TEMP
 #include <glfw/glfw3.h>
@@ -18,10 +18,10 @@ namespace PhotoEngine
         m_window = std::make_shared<Window>();
         m_window->set_event_callback(std::bind(&Application::on_event, this, std::placeholders::_1));
 
-        m_layer_list = std::make_unique<LayerList>();
+        m_layer_list = std::make_shared<LayerList>();
+        m_viewport = std::make_shared<Image>(500, 500);
 
-        ImGUILayer* layer = new ImGUILayer();
-        m_layer_list->insert(layer, 0);
+        m_gui_interface = nullptr;
     }
 
     Application::~Application()
@@ -29,6 +29,7 @@ namespace PhotoEngine
         for (Layer* layer : *m_layer_list)
         {
             layer->on_detach();
+            delete layer;
         }
     }
 
@@ -38,10 +39,10 @@ namespace PhotoEngine
         handler.handle_event<WindowCloseEvent>(std::bind(&Application::on_window_close, this, std::placeholders::_1));
         // PE_ENGINE_TRACE("{}", event.to_string());
 
-        for (Layer* layer : *m_layer_list)
+        for (auto it = m_layer_list->end(); it != m_layer_list->begin(); it--)
         {
             if (event.m_handled) break;
-            layer->on_event(event);
+            (*it)->on_event(event);
         }
     }
 
@@ -56,13 +57,20 @@ namespace PhotoEngine
     {
         while (m_running)
         {
+            for (Layer* layer : *m_layer_list)
+            {
+                layer->update();
+                layer->render();
+            }
+
+            m_viewport->generate_texture();
+
             glClearColor(0.2f, 0.3f, 0.8f, 1.0);
             glClear(GL_COLOR_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
-            for (Layer* layer : *m_layer_list)
-            {
-                layer->render();
-            }
+            m_gui_interface->begin();
+            m_gui_interface->render();
+            m_gui_interface->end();
 
             m_window->update();
         }
